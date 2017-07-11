@@ -46,6 +46,9 @@ User.find_each do |user|
                      tag_id: Faker::Number.between(1, 3))
     end
   end
-  puts "5 Posts with 3 Comments and 3 Tags created for each User"
+  puts "5 Posts with 3 Comments, and 3 Tags created"
+end
+Post.find_each do |post|
+  User.all.sample.authored_posts << post
 end
 puts "New records created!"

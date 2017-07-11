@@ -1,0 +1,41 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1>All Posts</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to("Create New Post", new_post_path, class: 'btn btn-lg btn-primary') %>
+      <br/>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Authors</h3>
+    </div>
+    <div class="col-md-8">
+      <h3>Post Title</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <% @posts.each do |post| %>
+        <div class="row">
+          <div class="col-md-4">
+            <% post.authors.each do |author| %>
+              <%= author.name %><span>;  </span>
+            <% end %>
+          </div>
+          <div class="col-md-8">
+            <%= link_to(post.title, post_path(post)) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

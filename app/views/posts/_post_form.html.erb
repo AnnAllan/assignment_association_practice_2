@@ -1,7 +1,49 @@
+<!-- Exercise 1 -->
+<div class="container">
+  <h2>Exercise 1</h2>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Tags, form_for, checkboxes</h3>
+      <%= form_for @post do |f| %>
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field(:title, placeholder: "Title", class: 'form_control') %>
+        </div>
+        <br/>
+        <div class="form-group">
+          <%= f.label :body %>
+          <%= f.text_area(:body, placeholder: "Message", class: 'form_control') %>
+        </div>
+        <br/>
+        <div class="form-group">
+          <h5>Tags</h5>
+          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name, {}) do |b| %>
+            <%= b.label(class: "col-md-4") {b.check_box + " " + b.text} %>
+          <% end %>
+        </div>
+        <br/>
+        <br/>
+        <%= f.submit "#{post.persisted? ? 'Edit Your Post': 'Create a Post'}", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<hr />
+
+<!-- Exercise 2 -->
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1>Checkboxes of Tags using `form_for`</h1>
+    </div>
+  </div>
+</div>
+
+<!--Exercise 3 -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Tags form_for combo box
+      </h2>
 
     </div>
   </div>

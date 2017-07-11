@@ -35,7 +35,7 @@ puts "5 Tags created"
 # 5 Posts per User, 3 comments and 3 tags per Post
 User.find_each do |user|
   5.times do
-    post = user.posts.create(title: Faker::StarWars.planet,
+    post = user.authored_posts.create(title: Faker::StarWars.planet,
                              body: Faker::StarWars.quote,
                              category: Category.all.sample)
     3.times do

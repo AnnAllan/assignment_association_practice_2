@@ -1,0 +1,67 @@
+<div class="container">
+  <!-- Title -->
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Title : <%= @post.title %></h3>
+    </div>
+  </div>
+  <!-- Authors -->
+  <div class="row">
+    <div class="col-md-12">
+      <% @post.authors.each do |author| %>
+        <h4>Author: <%= author.name %></h4>
+      <% end %>
+    </div>
+  </div>
+  <!-- Category -->
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Category: <%=@post.category ? @post.category.name : 'none' %></h4>
+    </div>
+  </div>
+  <!-- Tags -->
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Tags: <%= @post.tags ? @post.tags.map {|tag| tag.name}. join(', ') : 'none' %></h4>
+    </div>
+  </div>
+  <!-- Post -->
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Post:</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p><%= @post.body %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <%= link_to('Edit Post', edit_post_path(@post), class: 'btn btn-primary') %>
+    </div>
+    <div class="col-md3 offset-md-3">
+      <%= link_to('Delete Post', post_path(@post), method: :delete, class: 'btn btn-danger') %>
+    </div>
+  </div>
+  <!--Comments -->
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Comments:</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <% if @post.comments.present? %>
+        <% @post.comments.each do |comment| %>
+          <p> <%= comment.body %></p>
+          <p> Comment Author: <%= comment.author.name %></p>
+          <p> Comment ID: <%= comment.id %></p>
+          <br/>
+        <% end %>
+      <% else %>
+        <p>None</p>
+      <% end %>
+    </div>
+  </div>
+</div>

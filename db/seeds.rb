@@ -42,7 +42,7 @@ User.find_each do |user|
       post.comments.create(body: Faker::StarWars.wookie_sentence, user_id: Faker::Number.between(1, 10))
     end
     3.times do
-      PostTag.create(post_id: post.id,
+      PostTagging.create(post_id: post.id,
                      tag_id: Faker::Number.between(1, 3))
     end
   end

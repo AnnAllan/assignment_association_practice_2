@@ -9,7 +9,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @category_options = Category.all.map{|cat| [cat.name, cat.id]}
     @post.comments.build
   end
 
@@ -52,6 +51,6 @@ class PostsController < ApplicationController
 
   private
   def safe_post_params
-   params.require(:post).permit(:title, :body, :category_id, :tags_id => [], :comments_attributes => [:id, :body, :user_id])
+   params.require(:post).permit(:title, :body, :category_id, :tag_ids => [], :comments_attributes => [:id, :body, :user_id])
   end
 end

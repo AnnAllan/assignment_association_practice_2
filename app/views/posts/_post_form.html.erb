@@ -17,7 +17,7 @@
         <br/>
         <div class="form-group">
           <h5>Tags</h5>
-          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name, {}) do |b| %>
+          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
             <%= b.label(class: "col-md-4") {b.check_box + " " + b.text} %>
           <% end %>
         </div>

@@ -119,24 +119,27 @@
   <div class="row">
     <div class="col-md-12">
       <h3>Tags, form_for, combo box</h3>
-      <%= form_for @post do |f| %>
+      <%= form_for @post do |post_fields| %>
         <div class="form-group">
-          <%= f.label :title %>
-          <%= f.text_field(:title, placeholder: "Title", class: 'form_control') %>
+          <%= post_fields.label :title %>
+          <%= post_fields.text_field(:title, placeholder: "Title", class: 'form_control') %>
         </div>
         <br/>
         <div class="form-group">
-          <%= f.label :body %>
-          <%= f.text_area(:body, placeholder: "Message", class: 'form_control') %>
+          <%= post_fields.label :body %>
+          <%= post_fields.text_area(:body, placeholder: "Message", class: 'form_control') %>
         </div>
         <br/>
         <div class="form-group">
           <h5>Tags</h5>
-          <%= f.collection_select(:tag_ids, Tag.all, :id, :name, {include_blank: true}, {class: 'form-control', multiple: true}) %>
+          <%= post_fields.collection_select(:tag_ids, Tag.all, :id, :name, {include_blank: true}, {class: 'form-control', multiple: true}) %>
         </div>
         <br/>
         <br/>
-        <%= f.submit "#{post.persisted? ? 'Edit Your Post': 'Create a Post'}", class: "btn btn-primary" %>
+        <div class="form-group">
+          <%= render partial: "comment_fields", locals: {post_fields: post_fields } %>
+        </div>
+        <%= post_fields.submit "#{post.persisted? ? 'Edit Your Post': 'Create a Post'}", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>

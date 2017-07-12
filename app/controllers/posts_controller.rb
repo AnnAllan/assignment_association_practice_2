@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @category_options = Category.all.map{|cat| [cat.name, cat.id]}
+    @post.comments.build
   end
 
   def create
@@ -18,13 +19,14 @@ class PostsController < ApplicationController
      flash[:success] = "New post created"
      redirect_to post_path(@post)
    else
-     flash.now[:error] = "Post creation failed"
+     flash.now[:error] = "Post creation failed" + post.error.full_message.join(', ')
      render :new
    end
   end
 
   def edit
     @post = Post.find(params[:id])
+    @post.comments.build
   end
 
   def update
@@ -33,7 +35,7 @@ class PostsController < ApplicationController
      flash[:success] = "Post updated"
      redirect_to post_path(@post)
     else
-     flash.now[:error] = "Post update failed"
+     flash.now[:error] = "Post update failed" + post.error.full_message.join(', ')
      render :edit
     end
   end
@@ -43,7 +45,7 @@ class PostsController < ApplicationController
       flash[:success] = "Post deleted"
       redirect_to posts_path
     else
-      flash[:error] = "Post deletion failed"
+      flash[:error] = "Post deletion failed" + post.error.full_message.join(', ')
       render :edit
     end
   end

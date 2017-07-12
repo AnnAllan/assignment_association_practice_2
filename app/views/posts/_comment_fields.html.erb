@@ -1,0 +1,18 @@
+<h5>Comments</h5>
+<%= post_fields.fields_for(:comments) do |comment_fields| %>
+  <h6>A commenter says:</h6>
+  <%= comment_fields.label(:body) %>
+  <%= comment_fields.text_area(:body, class: 'form_control') %>
+  <br />
+  <%= comment_fields.label(:author) %>
+  <%= comment_fields.collection_select(:user_id, User.all, :id, :name, {include_blank: true}, {class: 'form_control'}) %>
+  <br />
+  <p>
+    Comment ID: <%= comment_fields.object.persisted? ? comment_fields.object.id : "none" %>
+  </p>
+  <br />
+  <% if comment_fields.object.persisted? %>
+    <%= comment_fields.label(:_destroy, "Delete Comment") %>
+    <%= comment_fields.check_box(:_destroy) %>
+  <% end %>
+<% end %>

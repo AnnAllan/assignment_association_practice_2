@@ -5,4 +5,7 @@ class Post < ApplicationRecord
   has_many :authors, through: :post_authorings, class_name: "User", source: :user
   has_many :post_taggings, class_name: "PostTag"
   has_many :tags, through: :post_taggings, dependent: :destroy
+  accepts_nested_attributes_for :comments,
+                                reject_if: :all_blank,
+                                allow_destroy: true
 end
